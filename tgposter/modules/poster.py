@@ -1,6 +1,6 @@
 from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton 
 from telegram.ext import Filter, CommandHandler, MessageHandler, CallbackContext, run_async, CallbackQueryHandler 
-from sql import channel_sql as sql
+from tgposter.sql import channel_sql as sql
 import re
 
 
@@ -87,7 +87,7 @@ def accp_call(update: Update, context: CallbackContext):
     msg.delete()
     query.answer("Done!")
 
-def helpcall(update: Update, context: CallbackContext): 
+def helpcal(update: Update, context: CallbackContext): 
   query = update.callback_query
   query.answer("First use plus messanger an then go to channel and get the id from the channel profile, after that add '*-100*' before, and that's the channel id!", show_alert = True)
   
@@ -95,7 +95,7 @@ def helpcall(update: Update, context: CallbackContext):
 SET_HANDLER = CommandHandler("setchannel", set_channel) 
 POST_HANDLER = MessageHandler(Filters.regex(r'^#post'), post)
 CALLBACK = CallbackQueryHandler(accp_call, pattern = r'accp_(.*)')
-HELP_BACK = CallbackQueryHandler(helpcall, pattern = "channel_help")
+HELP_BACK = CallbackQueryHandler(helpcal, pattern = "channel_help")
 
 dispatcher.add_handler(SET_HANDLER)
 dispatcher.add_handler(CALLBACK)
