@@ -1,1 +1,1 @@
-#del
+from tgposter.modules import pm, poster
