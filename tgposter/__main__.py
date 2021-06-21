@@ -1,6 +1,7 @@
 import logging
 from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, run_async, CallbackQueryHandler
+from tgposter import updater, dispatcher
+from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContext, run_async, CallbackQueryHandler
 
 start_time = time.time()
 
@@ -9,10 +10,8 @@ logging.basicConfig(
       format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO) 
 
 logger = logging.getLogger(__name__)
-updater = Updater(TOKEN)
-dispatcher = updater.dispatcher
 
-error handling
+#error handling
 
 def error_handler(update: object, context: CallbackContext) -> None:
     logger.error(msg="Exception while handling an update:", exc_info=context.error)
@@ -69,3 +68,17 @@ def ping(update: Update, context: CallbackContext):
   n = time.time()
   awk = grt(n - start_time)
   m.edit_text(f"PONG!\nPing Time: {pon} ms\nAwake For: {awk}")
+
+
+PING = CommandHandler("ping", ping)
+
+dispatcher.add_error_handler(error_handler)
+dispatcher.add_handler(PING)
+
+dispatcher.bot.send_message(1285226731, "Im online!!")
+
+logger.info("TelegraphPoster: Started polling....")
+
+updater.start_polling()
+
+updater.idle()
