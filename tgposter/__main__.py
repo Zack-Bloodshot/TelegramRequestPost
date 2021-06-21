@@ -2,7 +2,7 @@ import logging
 from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton 
 from tgposter import updater, dispatcher
 from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackContext, run_async, CallbackQueryHandler
-
+from tgposter import modules
 start_time = time.time()
 
 # Enable logging
