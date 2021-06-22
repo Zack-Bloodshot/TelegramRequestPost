@@ -84,7 +84,7 @@ def accp_call(update: Update, context: CallbackContext):
     chat = spl[3]
     msg_id = spl[2]
     bot.send_message(chat_id = int(chat), text = "Your post was posted!!", reply_to_message_id = int(msg_id))
-      query.answer("Notif send!!"
+    query.answer("Notif send!!"
     msg.delete()
     query.answer("Done!")
 
