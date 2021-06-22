@@ -65,6 +65,7 @@ def accp_call(update: Update, context: CallbackContext):
   accept_match = re.match(r"accp_(.*)", query.data)
   reject_match = re.match(r"accr", query.data)
   posted_match = re.match(r"acc_(.*)", query.data)
+  del_match = re.match(r"accd", query.data)
   if accept_match: 
     spl = query.data.split("_", 5)
     msg_id = spl[1]
@@ -77,16 +78,24 @@ def accp_call(update: Update, context: CallbackContext):
     markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Posted!", callback_data = f"acc_{msg_id}_{chat}")]])
     msg.edit_reply_markup(markup)
   elif reject_match:
-    msg.delete()
+    markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Delete", callback_data="accd")]])
+    msg.edit_text("Was rejected..!")
     query.answer("Success...")
   elif posted_match: 
     spl = query.data.split("_", 5)
     chat = spl[2]
     msg_id = spl[1]
-    bot.send_message(chat_id = int(chat), text = "Your post was posted!!", reply_to_message_id = int(msg_id))
-    query.answer("Notif send!!")
-    msg.delete()
+    markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Delete", callback_data="accd")]])
+    try:
+      bot.send_message(chat_id = int(chat), text = "Your post was posted!!", reply_to_message_id = int(msg_id))
+      query.answer("Notif send!!")
+    except Exception:
+      query.answer("Couldn't send notif..")
+    msg.edit_text("Was posted..!", reply_markup=markup)
     query.answer("Done!")
+  elif del_match:
+    msg.delete()
+    query.answer("Deleted...!!")
 
 def helpcal(update: Update, context: CallbackContext): 
   query = update.callback_query
