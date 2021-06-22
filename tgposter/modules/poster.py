@@ -32,7 +32,7 @@ def post(update: Update, context: CallbackContext):
   msg = update.effective_message 
   chat = update.effective_chat 
   user = update.effective_user 
-  if sql.is_on(chat_id): 
+  if sql.is_on(chat.id): 
     pass
   else: 
     return 
@@ -91,7 +91,7 @@ def accp_call(update: Update, context: CallbackContext):
 
 def helpcal(update: Update, context: CallbackContext): 
   query = update.callback_query
-  query.answer("First use plus messanger an then go to channel and get the id from the channel profile, after that add '*-100*' before, and that's the channel id!", show_alert = True)
+  query.answer("First use plus messanger an then go to channel and get the id from the channel profile, after that add '-100' before, and that's the channel id!", show_alert = True)
   
   
 SET_HANDLER = CommandHandler("setchannel", set_channel) 
