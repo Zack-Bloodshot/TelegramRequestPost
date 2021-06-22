@@ -48,7 +48,7 @@ def post(update: Update, context: CallbackContext):
         text = f"Submitted by: [{user.first_name}](tg://user? id={user.id}) \nMessage: {link}"
       else: 
         text = f"Submitted by: [{user.first_name}](tg://user?id={user.id}"
-      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.message_id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accp_reject")], [InlineKeyboardButton(text = "Posted!", callback_data = f"acc_{msg.message_id}_{chat.id}")]])
+      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.message_id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accr")], [InlineKeyboardButton(text = "Posted!", callback_data = f"acc_{msg.message_id}_{chat.id}")]])
       bot.send_photo(chat_id = int(channel), photo = photo_id, caption = text, reply_markup = markup, parse_mode = ParseMode.MARKDOWN)
     else:
       msg.reply_text("That is not a photo, to post something else tag an admim!")
@@ -79,7 +79,7 @@ def accp_call(update: Update, context: CallbackContext):
     msg.edit_reply_markup(markup)
   elif reject_match:
     markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Delete", callback_data="accd")]])
-    msg.edit_text("Was rejected..!")
+    msg.edit_caption("Was rejected..!", reply_markup=markup)
     query.answer("Success...")
   elif posted_match: 
     spl = query.data.split("_", 5)
@@ -91,7 +91,7 @@ def accp_call(update: Update, context: CallbackContext):
       query.answer("Notif send!!")
     except Exception:
       query.answer("Couldn't send notif..")
-    msg.edit_text("Was posted..!", reply_markup=markup)
+    msg.edit_caption("Was posted..!", reply_markup=markup)
     query.answer("Done!")
   elif del_match:
     msg.delete()
