@@ -1,5 +1,6 @@
 from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton 
 from telegram.ext import Filters, CommandHandler, MessageHandler, CallbackContext, run_async, CallbackQueryHandler 
+from tgposter import dispatcher
 from tgposter.sql import channel_sql as sql
 import re
 
