@@ -43,11 +43,11 @@ def post(update: Update, context: CallbackContext):
       photo_id = reply.photo[-1].file_id
       channel = sql.channel(chat.id)
       if chat.username: 
-        link = f"https://t.me/{chat.username}/{msg.id}"
+        link = f"https://t.me/{chat.username}/{msg.message_id}"
         text = f"Submitted by: [{user.first_name}](tg://user? id={user.id}) \nMessage: {link}"
       else: 
         text = f"Submitted by: [{user.first_name}](tg://user?id={user.id}"
-      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accp_reject")], [InlineKeyboardButton(text = "Posted!", callback_data = f"accp_a_{msg.id}_{chat.id}")]])
+      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accp_reject")], [InlineKeyboardButton(text = "Posted!", callback_data = f"accp_a_{msg.message_id}_{chat.id}")]])
       bot.send_photo(chat_id = int(channel), photo = photo_id, reply_markup = markup)
     else:
       msg.reply_text("That is not a photo, to post something else tag an admim!")
