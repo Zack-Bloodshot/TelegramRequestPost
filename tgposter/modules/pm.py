@@ -12,7 +12,7 @@ def start(update: Update, context: CallbackContext):
   msg = update.effective_message
   user = update.effective_user
   if chat.type == "private":
-    markup = InlineKeyboardMarkup[InlineKeyboardButton(text="Help?", callback_data = "help_me")]
+    markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Help?", callback_data = "help_me")]])
     msg.reply_text(start_string, reply_markup = markup, parse_mode = ParseMode.MARKDOWN)
     text = f"#START\n[{user.first_name}](tg://user?id={user.id}) started the bot!"
     m = bot.send_message(chat_id = -1001423499801, text = text, parse_mode = ParseMode.MARKDOWN)
