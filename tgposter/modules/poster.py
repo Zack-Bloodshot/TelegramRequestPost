@@ -50,6 +50,7 @@ def post(update: Update, context: CallbackContext):
         text = f"Submitted by: [{user.first_name}](tg://user?id={user.id}"
       markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.message_id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accr")], [InlineKeyboardButton(text = "Posted!", callback_data = f"acc_{msg.message_id}_{chat.id}")]])
       bot.send_photo(chat_id = int(channel), photo = photo_id, caption = text, reply_markup = markup, parse_mode = ParseMode.MARKDOWN)
+      msg.reply_text("Sent a request to admims!")
     else:
       msg.reply_text("That is not a photo, to post something else tag an admim!")
       return 
