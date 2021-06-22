@@ -49,7 +49,7 @@ def post(update: Update, context: CallbackContext):
       else: 
         text = f"Submitted by: [{user.first_name}](tg://user?id={user.id}"
       markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.message_id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accp_reject")], [InlineKeyboardButton(text = "Posted!", callback_data = f"accp_a_{msg.message_id}_{chat.id}")]])
-      bot.send_photo(chat_id = int(channel), photo = photo_id, reply_markup = markup)
+      bot.send_photo(chat_id = int(channel), photo = photo_id, caption = text, reply_markup = markup)
     else:
       msg.reply_text("That is not a photo, to post something else tag an admim!")
       return 
@@ -64,7 +64,7 @@ def accp_call(update: Update, context: CallbackContext):
   msg = update.effective_message 
   accept_match = re.match(r"accp_(.*)", query.data)
   reject_match = re.match(r"accp_reject", query.data)
-  posted_match = re.match(r"accp_a_(.*)", query.data)
+  posted_match = re.match(r"acc_(.*)", query.data)
   if accept_match: 
     spl = query.data.split("_", 5)
     msg_id = spl[1]
@@ -95,7 +95,7 @@ def helpcal(update: Update, context: CallbackContext):
   
 SET_HANDLER = CommandHandler("setchannel", set_channel) 
 POST_HANDLER = MessageHandler(Filters.regex(r'^#post'), post)
-CALLBACK = CallbackQueryHandler(accp_call, pattern = r'accp_(.*)')
+CALLBACK = CallbackQueryHandler(accp_call, pattern = r'acc(.*)')
 HELP_BACK = CallbackQueryHandler(helpcal, pattern = "channel_help")
 
 dispatcher.add_handler(SET_HANDLER)
