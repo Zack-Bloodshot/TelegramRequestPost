@@ -29,6 +29,7 @@ def set_channel(update: Update, context: CallbackContext):
     
     
 def post(update: Update, context: CallbackContext): 
+  bot = context.bot
   msg = update.effective_message 
   chat = update.effective_chat 
   user = update.effective_user 
