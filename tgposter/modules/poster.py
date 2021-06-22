@@ -48,8 +48,8 @@ def post(update: Update, context: CallbackContext):
         text = f"Submitted by: [{user.first_name}](tg://user? id={user.id}) \nMessage: {link}"
       else: 
         text = f"Submitted by: [{user.first_name}](tg://user?id={user.id}"
-      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.message_id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accp_reject")], [InlineKeyboardButton(text = "Posted!", callback_data = f"accp_a_{msg.message_id}_{chat.id}")]])
-      bot.send_photo(chat_id = int(channel), photo = photo_id, caption = text, reply_markup = markup)
+      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Accept", callback_data = f"accp_{msg.message_id}_{chat.id}"), InlineKeyboardButton(text = "Reject", callback_data = "accp_reject")], [InlineKeyboardButton(text = "Posted!", callback_data = f"acc_{msg.message_id}_{chat.id}")]])
+      bot.send_photo(chat_id = int(channel), photo = photo_id, caption = text, reply_markup = markup, parse_mode = ParseMode.MARKDOWN)
     else:
       msg.reply_text("That is not a photo, to post something else tag an admim!")
       return 
@@ -74,7 +74,7 @@ def accp_call(update: Update, context: CallbackContext):
       query.answer("Notif send...!!")
     except Exception: 
       query.answer("Cant find message! Can't notif!")
-    markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Posted!", callback_data = f"accp_a_{msg_id}_{chat}")]])
+    markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Posted!", callback_data = f"acc_{msg_id}_{chat}")]])
     msg.edit_reply_markup(markup)
   elif reject_match:
     msg.delete()
