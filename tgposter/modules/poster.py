@@ -2,7 +2,7 @@ from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButt
 from telegram.ext import Filters, CommandHandler, MessageHandler, CallbackContext, run_async, CallbackQueryHandler 
 from tgposter.sql import channel_sql as sql
 import re
-from tgposter.modules import is_admin
+from tgposter.modules.is_admin import user_admin
 
 @user_admin
 def set_channel(update: Update, context: CallbackContext): 
