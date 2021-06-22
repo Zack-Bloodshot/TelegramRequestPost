@@ -1,1 +1,1 @@
-from tgposter.modules import pm, poster
+from tgposter.modules import pm, poster, is_admin
