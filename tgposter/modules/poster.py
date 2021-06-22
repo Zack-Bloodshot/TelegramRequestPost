@@ -63,7 +63,7 @@ def accp_call(update: Update, context: CallbackContext):
   query = update.callback_query
   msg = update.effective_message 
   accept_match = re.match(r"accp_(.*)", query.data)
-  reject_match = re.match(r"accp_reject", query.data)
+  reject_match = re.match(r"accr", query.data)
   posted_match = re.match(r"acc_(.*)", query.data)
   if accept_match: 
     spl = query.data.split("_", 5)
