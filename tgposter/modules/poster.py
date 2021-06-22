@@ -41,7 +41,7 @@ def post(update: Update, context: CallbackContext):
     if reply.photo:
       text = ""
       photo_id = reply.photo[-1].file_id
-      channel = sql.channel(chat_id)
+      channel = sql.channel(chat.id)
       if chat.username: 
         link = f"https://t.me/{chat.username}/{msg.id}"
         text = f"Submitted by: [{user.first_name}](tg://user? id={user.id}) \nMessage: {link}"
