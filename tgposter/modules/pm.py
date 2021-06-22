@@ -5,7 +5,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 start_string = "Just a simple hidden atm bot! made by @DontKnowWhoRU, check help!!"
 help_string = "Just set the channel where to store by `/setchannel <channel id>` and then whenever someone use #post on something it will get forwarded to the channel which was set, and then the buttons can be used to mark something as post which would give a notification to the user who used the #post and then delete the post itself from the storage channel, and an alternative button to reject the post\n\n If there are some bugs that u find, just leave a msg to @DontKnowWhoRU (Try to give everything in one message)"
 
-def start(update: Update, context: CallbackContextack):
+def start(update: Update, context: CallbackContext):
   global start_string
   bot = context.bot
   chat = update.effective_chat
