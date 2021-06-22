@@ -13,8 +13,8 @@ def set_channel(update: Update, context: CallbackContext):
   arg = msg.text.split(" ", 1)
   if len(arg) < 2:
      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "How to get channel id?", callback_data = "channel_help")]])
-    msg.reply_text("Please include the channel id that you want to use", reply_markup = markup)
-    return
+     msg.reply_text("Please include the channel id that you want to use", reply_markup = markup)
+     return
   else: 
     channel = arg[1]
     if channel.startswith("-100"):
