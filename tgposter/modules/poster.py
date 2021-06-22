@@ -81,8 +81,8 @@ def accp_call(update: Update, context: CallbackContext):
     query.answer("Success...")
   elif posted_match: 
     spl = query.data.split("_", 5)
-    chat = spl[3]
-    msg_id = spl[2]
+    chat = spl[2]
+    msg_id = spl[1]
     bot.send_message(chat_id = int(chat), text = "Your post was posted!!", reply_to_message_id = int(msg_id))
     query.answer("Notif send!!")
     msg.delete()
