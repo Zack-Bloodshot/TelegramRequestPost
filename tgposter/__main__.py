@@ -82,7 +82,7 @@ dispatcher.add_handler(PING)
 
 dispatcher.bot.send_message(1285226731, "Im online!!")
 
-logger.info("TelegraphPoster: Started polling....")
+print("TelegraphPoster: Started polling....")
 
 updater.start_polling()
 
