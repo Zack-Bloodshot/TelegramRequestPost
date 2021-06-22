@@ -1,1 +1,2 @@
-#req
+python-telegram-bot
+sqlalchemy==1.3.23
