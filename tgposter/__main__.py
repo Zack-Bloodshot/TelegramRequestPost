@@ -32,9 +32,9 @@ def error_handler(update: object, context: CallbackContext) -> None:
         f'<pre>{html.escape(tb_string)}</pre>'
     )
     if len(message) < 4000:
-      m = context.bot.send_message(chat_id= -1001494443405, text=message, parse_mode=ParseMode.HTML)
+      m = context.bot.send_message(chat_id=-1001423499801, text=message, parse_mode=ParseMode.HTML)
     else: 
-      context.bot.send_message(chat_id =-1001494443405, text = f"@DontKnowWhoRU\n\n`{context.error}\nFull traceback in logs`", parse_mode = ParseMode.MARKDOWN)
+      context.bot.send_message(chat_id =-1001423499801, text = f"@DontKnowWhoRU\n\n`{context.error}\nFull traceback in logs`", parse_mode = ParseMode.MARKDOWN)
     #context.bot.pinChatMessage(-1001494443405, m.message_id)
 
 def grt(seconds: int) -> str:
