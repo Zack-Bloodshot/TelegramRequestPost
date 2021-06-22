@@ -40,7 +40,7 @@ def post(update: Update, context: CallbackContext):
   if reply: 
     if reply.photo:
       text = ""
-      photo_id = reply.photo.file_id
+      photo_id = reply.photo[-1].file_id
       channel = sql.channel(chat_id)
       if chat.username: 
         link = f"https://t.me/{chat.username}/{msg.id}"
