@@ -59,6 +59,7 @@ def post(update: Update, context: CallbackContext):
   
   
 def accp_call(update: Update, context: CallbackContext): 
+  bot = context.bot
   query = update.callback_query
   msg = update.effective_message 
   accept_match = re.match(r"accp_(.*)", query.data)
@@ -68,9 +69,9 @@ def accp_call(update: Update, context: CallbackContext):
     spl = query.data.split("_", 5)
     msg_id = spl[1]
     chat = spl[2]
-    query.answer("Trying to send a notif to user...")
     try:
       bot.send_message(chat_id = int(chat), text = "Your post was accepted!", reply_to_message_id = int(msg_id))
+      query.answer("Notif send...!!")
     except Exception: 
       query.answer("Cant find message! Can't notif!")
     markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "Posted!", callback_data = f"accp_a_{msg_id}_{chat}")]])
@@ -82,11 +83,8 @@ def accp_call(update: Update, context: CallbackContext):
     spl = query.data.split("_", 5)
     chat = spl[3]
     msg_id = spl[2]
-    query.answer("Trying to send a notif...")
-    try: 
-      bot.send_message(chat_id = int(chat), text = "Your post was posted!!", reply_to_message_id = int(msg_id))
-    except Exception: 
-      query.answer("Can't find message! Notif Failed")
+    bot.send_message(chat_id = int(chat), text = "Your post was posted!!", reply_to_message_id = int(msg_id))
+      query.answer("Notif send!!"
     msg.delete()
     query.answer("Done!")
 
