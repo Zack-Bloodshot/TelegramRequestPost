@@ -20,7 +20,7 @@ def start(update: Update, context: CallbackContext):
     msg.reply_text("Yes Im doin' my job sar!!!")
 
 
-def helpcall(update: Update, context: Context):
+def helpcall(update: Update, context: CallbackContext):
   query = update.callback_query
   msg = update.effective_message
   msg.edit_text(text=help_string, parse_mode=ParseMode.MARKDOWN)
