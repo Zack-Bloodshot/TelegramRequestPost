@@ -1,20 +1,20 @@
 from telegram import Update, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton 
-from telegram.ext import Filters, CommandHandler, MessageHandler, CallbackContext, run_async, CallbackQueryHandler 
-from tgposter import dispatcher
+from telegram.ext import Filter, CommandHandler, MessageHandler, CallbackContext, run_async, CallbackQueryHandler 
 from tgposter.sql import channel_sql as sql
 import re
+from tgposter.modules import is_admin
 
-
+@user_admin
 def set_channel(update: Update, context: CallbackContext): 
   msg = update.effective_message 
   chat = update.effective_chat 
   user = update.effective_user 
   bot = context.bot 
   arg = msg.text.split(" ", 1)
-  if len(arg) > 2:
+  if len(arg) < 2:
      markup = InlineKeyboardMarkup([[InlineKeyboardButton(text = "How to get channel id?", callback_data = "channel_help")]])
-     msg.reply_text("Please include the channel id that you want to use", reply_markup = markup)
-     return
+    msg.reply_text("Please include the channel id that you want to use", reply_markup = markup)
+    return
   else: 
     channel = arg[1]
     if channel.startswith("-100"):
