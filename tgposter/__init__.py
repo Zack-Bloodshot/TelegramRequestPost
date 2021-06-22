@@ -1,5 +1,5 @@
 import os 
-from telegram import Updater
+from telegram.ext import Updater
 
 TOKEN = os.environ.get('BOT_TOKEN')
 updater = Updater(TOKEN)
